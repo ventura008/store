@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -14,15 +15,28 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-
+Route::get('/perfil/{id}',[UsuarioController::class,'perfil']);
 
 
 
 // Outras páginas
+Route::get('/laravel', function () {
+    return view('welcome');
+})->name('laravel');
 
 Route::get('/servicos', function () {
     return view('servicos');
 })->name('servicos');
+
+Route::get('/loginn', function () {
+    return view('loginuser');
+})->name('loginn');
+
+
+
+Route::get('/cadastro', function () {
+    return view('cadastrouser');
+})->name('cadastro');
 
 Route::get('/sobre', function () {
     return view('sobre');
@@ -36,14 +50,10 @@ Route::get('/reserva', function () {
     return view('reserva');
 })->name('reserva');
 
-// Processar formulário de reserva
-Route::post('/enviar-reserva', function (Illuminate\Http\Request $request) {
-    // Validar e processar os dados da reserva
-    return redirect('/reserva')->with('success', 'Reserva enviada com sucesso!');
-})->name('enviar.reserva');
+
 
 Route::get('/deleta_carro/{id_carro}',[TestController::class,'deleta_carro']);
-Route::get('/alterar_carro/{id_carro}',[Testcontroller::class,'mostra_carro']);
+//Route::get('/alterar_carro/{id_carro}',[Testcontroller::class,'mostra_carro']);//
 Route::get('/alterarformulario/{id_carro}',[TestController::class,'vercarro']);
 Route::get('/frota',[Testcontroller::class,'conta_marca']);
 Route::get('/formulario',[Testcontroller::class,'abrir_form']);

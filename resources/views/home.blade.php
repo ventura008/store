@@ -11,7 +11,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <link rel="stylesheet" href="/css/home.css">
+    
+    
 
 </head>
 
@@ -314,12 +318,16 @@
 
 
 
-
-
-
-
     
     <script>
+        $(document).ready(function(){
+
+
+        let token = $.cookie('token');
+        alert(token);
+
+});
+        
         // Script para atualizar o ano no footer
         document.addEventListener('DOMContentLoaded', function() {
             // Atualizar ano no footer
@@ -357,6 +365,8 @@
                 });
             }
         });
+
+    
     </script>
 </body>
 </html>

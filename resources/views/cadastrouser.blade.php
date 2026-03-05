@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Carro - XLCars</title>
+    <title>Cadastro de Usuário - WLCARS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="inicial.js"></script>
     <style>
         * {
             margin: 0;
@@ -75,6 +75,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 25px;
+            position: relative;
         }
         
         .form-group {
@@ -91,6 +92,8 @@
             color: #D4AF37;
             font-weight: 600;
             font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .input-container {
@@ -112,6 +115,11 @@
             outline: none;
             border-color: #D4AF37;
             box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+            background-color: #222;
+        }
+        
+        input:hover, select:hover {
+            border-color: #D4AF37;
         }
         
         .input-icon {
@@ -120,6 +128,7 @@
             top: 50%;
             transform: translateY(-50%);
             color: #D4AF37;
+            font-size: 18px;
         }
         
         .buttons {
@@ -141,6 +150,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .btn-submit {
@@ -163,6 +174,7 @@
         .btn-reset:hover {
             background-color: #2a2a2a;
             transform: translateY(-2px);
+            border-color: #D4AF37;
         }
         
         .btn-icon {
@@ -170,13 +182,14 @@
             font-size: 18px;
         }
         
-        .car-icon {
+        .user-icon {
             position: absolute;
             top: 20px;
             right: 20px;
             color: #D4AF37;
             font-size: 40px;
             opacity: 0.3;
+            z-index: 1;
         }
         
         @media (max-width: 768px) {
@@ -193,7 +206,7 @@
                 flex-direction: column;
             }
             
-            .car-icon {
+            .user-icon {
                 display: none;
             }
         }
@@ -201,26 +214,48 @@
         .required::after {
             content: " *";
             color: #ff4444;
+            font-size: 14px;
         }
         
-        .success-message {
-            display: none;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #1a3c1a;
-            color: #4CAF50;
-            padding: 15px 25px;
-            border-radius: 8px;
-            border-left: 4px solid #4CAF50;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            z-index: 1000;
-            animation: slideIn 0.5s ease;
+        /* Estilo para o placeholder */
+        ::placeholder {
+            color: #666;
+            opacity: 1;
         }
         
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        /* Estilo para as opções do select */
+        select option {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        
+        /* Efeito de brilho no foco */
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(212, 175, 55, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+            100% { box-shadow: 0 0 5px rgba(212, 175, 55, 0.2); }
+        }
+        
+        input:focus, select:focus {
+            animation: glow 1.5s infinite;
+        }
+        
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c19b2e;
         }
     </style>
 </head>
@@ -231,118 +266,76 @@
                 <i class="fas fa-crown logo-icon"></i>
                 <div class="logo-text">WLCARS</div>
             </div>
-            <h1>Cadastro de Veículo</h1>
+            <h1>Cadastro de Usuário</h1>
         </div>
         
         <div class="form-container">
-            <i class="fas fa-car car-icon"></i>
+            <i class="fas fa-user-circle user-icon"></i>
             
-            <div class="form-group">
-                <label for="modelo" class="required">Modelo</label>
+            <div class="form-group full-width">
+                <label for="nome" class="required">Nome Completo</label>
                 <div class="input-container">
-                    <input type="text" id="modelo" placeholder="Ex: Ferrari F8 Tributo">
-                    <i class="fas fa-car input-icon"></i>
-                </div>
-            </div>
-
-             <div class="form-group">
-                <label for="sobre" class="required">sobre o carro</label>
-                <div class="input-container">
-                    <input type="text" id="sobre" placeholder="Ex:diga um pouco sobre o carro">
-                    <i class="fas fa-car input-icon"></i>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="dono" class="required">Proprietário</label>
-                <div class="input-container">
-                    <input type="text" id="dono" placeholder="Nome do proprietário">
+                    <input type="text" id="nome" placeholder="Digite seu nome completo">
                     <i class="fas fa-user input-icon"></i>
                 </div>
             </div>
+
             
             
             <div class="form-group">
-                <label for="placa" class="required">Placa</label>
+                <label for="email" class="required">E-mail</label>
                 <div class="input-container">
-                    <input type="text" id="placa" placeholder="AAA-0000">
-                    <i class="fas fa-id-card input-icon"></i>
+                    <input type="email" id="email" placeholder="seu@email.com">
+                    <i class="fas fa-envelope input-icon"></i>
                 </div>
             </div>
             
             <div class="form-group">
-                <label for="cor" class="required">Cor</label>
+                <label for="senha" class="required">Senha</label>
                 <div class="input-container">
-                    <input type="text" id="cor" placeholder="Ex: Vermelho">
-                    <i class="fas fa-palette input-icon"></i>
+                    <input type="password" id="senha" placeholder="Mínimo 6 caracteres">
+                    <i class="fas fa-lock input-icon"></i>
                 </div>
             </div>
             
             <div class="form-group">
-                <label for="valor" class="required">Valor (R$)</label>
+                <label for="telefone">Telefone</label>
                 <div class="input-container">
-                    <input type="number" id="valor" placeholder="0,00" min="0" step="0.01">
-                    <i class="fas fa-dollar-sign input-icon"></i>
+                    <input type="text" id="telefone" placeholder="(11) 99999-9999">
+                    <i class="fas fa-phone input-icon"></i>
                 </div>
             </div>
             
             <div class="form-group">
-                <label for="potencia" class="required">Potência (cavalos)</label>
+                <label for="nascimento">Data de Nascimento</label>
                 <div class="input-container">
-                    <input type="number" id="potencia" placeholder="Ex: 300">
-                    <i class="fas fa-bolt input-icon"></i>
+                    <input type="date" id="nascimento">
+                    <i class="fas fa-calendar input-icon"></i>
                 </div>
             </div>
             
             <div class="form-group">
-                <label for="tipo_gasolina" class="required">Tipo de Combustível</label>
+                <label for="genero">Gênero</label>
                 <div class="input-container">
-                    <select id="tipo_gasolina">
+                    <select id="genero">
                         <option value="">Selecione...</option>
-                        <option value="gasolina">Gasolina</option>
-                        <option value="etanol">Etanol</option>
-                        <option value="flex">Flex (Gasolina/Etanol)</option>
-                        <option value="diesel">Diesel</option>
-                        <option value="eletrico">Elétrico</option>
-                        <option value="hibrido">Híbrido</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
                     </select>
-                    <i class="fas fa-gas-pump input-icon"></i>
+                    <i class="fas fa-venus-mars input-icon"></i>
                 </div>
             </div>
-            
-            <div class="form-group">
-                <label for="potencia" class="required">Fabricante</label>
-                <div class="input-container">
-                    <input type="text" id="fabricante" placeholder="Ford">
-                    <i class="fas fa-bolt input-icon"></i>
-                </div>
-            </div>
-
-             <div class="form-group">
-                <label for="ano" class="required">img</label>
-                <div class="input-container">
-                    <input type="text" id="img" placeholder="Ex: 2023" min="1900" max="2026">
-                    <i class="fas fa-calendar input-icon"></i>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="ano" class="required">Ano</label>
-                <div class="input-container">
-                    <input type="number" id="ano" placeholder="Ex: 2023" min="1900" max="2026">
-                    <i class="fas fa-calendar input-icon"></i>
-                </div>
-            </div>
-                            
             
             <div class="buttons">
-                <button type="button" class="btn-submit" id="meu">
-                    <i class="fas fa-save btn-icon"></i> Cadastrar Veículo
+                  <button type="button" class="btn-submit" id="meu">
+                    <i class="fas fa-save btn-icon"></i> Cadastrar 
                 </button>
+              
             </div>
         </div>
     </div>
-    
+
+   
     <script>
         $(document).ready(function(){
 
@@ -352,37 +345,24 @@
     $("#meu").click(function(){
 
         $.ajax({
-            url: "../api/salva_carro" ,
+            url: "../api/cadastro_de_usuario" ,
             method: "POST",
             data: { 
 
-               
-                modelo : $("#modelo").val() ,
-                email: $("#email").val(),
-                cor: $("#cor").val(),
-                ano: $("#ano").val(),
-                placa : $("#placa").val() ,
-                dono: $("#dono").val(),
-                valor: $("#valor").val(),
-                potencia: $("#potencia").val(),
-                tipo_gasolina: $("#tipo_gasolina").val(),
-                fabricante: $("#fabricante").val(),
-                sobre: $("#sobre").val(),
-                img: $("#img").val(),
+                genero : $("#genero").val() ,
+                nascimento: $("#nascimento").val(),
+                telefone: $("#telefone").val(),
+                senha: $("#senha").val(),
+                email : $("#email").val() ,
+                nome: $("#nome").val(),
+                
 
              },
-
-
-
-
-
 
             success: function (res) {
 
                 alert("salvado cria")
             },
-
-            
 
         });
 
