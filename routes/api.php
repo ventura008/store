@@ -19,7 +19,7 @@ Route::get('/soma',[TestController::class,'soma']);
 
 
 //tentativa de deixar o perfil sem o id na barra de pesquisa
-//Route::post('/compara_usuario',[UsuarioController::class,'compara_usuario']);
+
 
 
 //login e cadastro//
@@ -33,7 +33,7 @@ Route::get('/login_novo',[UsuarioController::class,'login']);
 //reservarcarros//
 //pagamento//
 route::middleware(auth_api::class)->group(function(){
-    
+   Route::post('/busca_usuario',[UsuarioController::class,'busca_usuario']);
    Route::get('/verperfil',[UsuarioController::class,'perfil']);
 });
 

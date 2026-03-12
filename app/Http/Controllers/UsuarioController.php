@@ -20,17 +20,17 @@ class UsuarioController extends Controller
 
    
 
-       //         public function compara_usuario(Request $request)
-         //   {
-           //     $usuario = request::$usuario->
-//
-  //                  $data = [
-    //                        "erro" =>'n',
-      //                      "usuario" => $request->usuario
-        //                ];
-          //              return response()->json($data,200);
-//
-  //          }
+                public function busca_usuario(Request $request)
+            {
+                $usuario = 
+
+                    $data = [
+                            "erro" =>'n',
+                            "usuario" => $request->usuario
+                        ];
+                        return response()->json($data,200);
+
+            }
 
 
 

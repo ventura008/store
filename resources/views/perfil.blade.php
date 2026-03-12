@@ -952,28 +952,20 @@
     
         var token = $.cookie('token');
 
-    $("#meu").click(function(){
+    $(document).ready(function(){
 
         $.ajax({
-            url: "../api/compara_usuario" ,
+            url: "../api/busca_usuario" ,
             method: "GET",
             data: { 
-
-                $token = ToukeUser::where('token', $request->token)->get()->first()
                 token: token
 
-                numero: $("#numero").val() ,
-                nome: $("#nome").val() ,
-                telefone: $("#telefone").val() ,
-                nascimento: $("#nasimento").val() ,
-                genero: $("#genero").val() ,
-                senha: $("#senha").val(),
-                email : $("#email").val() ,
+              //back pega token e devolve inf usuario
              },
 
             success: function (res) {
 
-                ($request ->has('token'))
+               
                  
 
                 alert("salvado cria")
