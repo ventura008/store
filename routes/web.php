@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/perfil/{id}',[UsuarioController::class,'perfil']);
+Route::get('/perfil',[UsuarioController::class,'perfil']);
 
 
 

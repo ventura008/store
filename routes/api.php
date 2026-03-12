@@ -32,8 +32,10 @@ Route::get('/login_novo',[UsuarioController::class,'login']);
 //middle_cliente//
 //reservarcarros//
 //pagamento//
-route::middleware(auth_api::class)->group(function(){
-   Route::post('/busca_usuario',[UsuarioController::class,'busca_usuario']);
+// routes/api.php
+// routes/api.php
+Route::middleware(auth_api::class)->group(function(){
+   Route::get('/busca_usuario',[UsuarioController::class,'busca_usuario']); // Mudei de POST para GET
    Route::get('/verperfil',[UsuarioController::class,'perfil']);
 });
 

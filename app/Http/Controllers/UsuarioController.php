@@ -9,28 +9,42 @@ use Carbon\Carbon;
 
 class UsuarioController extends Controller
 {
-    public function perfil ($id)
+    public function perfil()
     {
-        $usuario =Usuario::find($id);
+       
 
-        return view('perfil')->with('usuario', $usuario);
+        return view('perfil');
 
     }
 
+    // Esta função é para a API (retorna JSON)
+    public function busca_usuario(Request $request)
+    {
+        // O middleware já anexou o usuário no $request
+        // Por causa do middleware auth_api, temos $request->usuario
+        
+        if($request->usuario) {
+            return response()->json([
+                "erro" => "n",
+                "usuario" => [
+                    'id' => $request->usuario->id,
+                    'nome' => $request->usuario->nome,
+                    'email' => $request->usuario->email,
+                    'telefone' => $request->usuario->telefone,
+                    'nascimento' => $request->usuario->nascimento,
+                    'genero' => $request->usuario->genero,
+                    'created_at' => $request->usuario->created_at
+                ]
+            ], 200);
+        } else {
+            return response()->json([
+                "erro" => "s",
+                "msg" => "Usuário não encontrado"
+            ], 404);
+        }
+    }
 
-   
 
-                public function busca_usuario(Request $request)
-            {
-                $usuario = 
-
-                    $data = [
-                            "erro" =>'n',
-                            "usuario" => $request->usuario
-                        ];
-                        return response()->json($data,200);
-
-            }
 
 
 

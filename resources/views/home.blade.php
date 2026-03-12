@@ -46,6 +46,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/contato">Contato</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/perfil">perfil</a>
+                    </li>
                     <li class="nav-item ms-2">
                         <a class="btn btn-reserva" href="/reserva">Reserve Agora</a>
                     </li>

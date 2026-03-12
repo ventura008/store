@@ -631,10 +631,10 @@
                 </div>
                 
                 <div class="profile-info">
-                    <div class="profile-name">{{$usuario->nome}}</div>
+                    <div class="profile-name"></div>
                     <div class="profile-email">
                         <i class="fas fa-envelope"></i>
-                        {{$usuario->email}}
+                        
                     </div>
                     <div class="profile-badges">
                         <div class="badge">
@@ -643,7 +643,7 @@
                         </div>
                         <div class="badge">
                             <i class="fas fa-calendar"></i>
-                            Desde {{ $usuario->created_at->format('d/m/Y') }}
+                            Desde 
                         </div>
                     </div>
                 </div>
@@ -675,19 +675,7 @@
                         <i class="fas fa-clock"></i>
                     </div>
                     <div class="stat-value">
-                        @php
-                            $diff = $usuario->created_at->diff(now());
-                        @endphp
-                        
-                        @if($diff->d > 0)
-                            {{ $diff->d }}d {{ $diff->h }}h
-                        @elseif($diff->h > 0)
-                            {{ $diff->h }}h {{ $diff->i }}m
-                        @elseif($diff->i > 0)
-                            {{ $diff->i }}min
-                        @else
-                            {{ $diff->s }}s
-                        @endif
+                      
                     </div>
                     <div class="stat-label">Tempo Ativo</div>
                 </div>
@@ -705,7 +693,7 @@
                             <div class="info-label">Nome Completo</div>
                             <div class="info-value">
                                 <i class="fas fa-user"></i>
-                                {{$usuario->nome}}
+                                
                             </div>
                         </div>
                         
@@ -713,7 +701,7 @@
                             <div class="info-label">E-mail</div>
                             <div class="info-value">
                                 <i class="fas fa-envelope"></i>
-                                {{$usuario->email}}
+                              
                             </div>
                         </div>
                         
@@ -721,7 +709,7 @@
                             <div class="info-label">Telefone</div>
                             <div class="info-value">
                                 <i class="fas fa-phone"></i>
-                                {{$usuario->telefone}}
+                              
                             </div>
                         </div>
                         
@@ -729,7 +717,7 @@
                             <div class="info-label">Data Nascimento</div>
                             <div class="info-value">
                                 <i class="fas fa-calendar"></i>
-                                {{$usuario->nascimento}}
+                                
                             </div>
                         </div>
                         
@@ -737,7 +725,7 @@
                             <div class="info-label">Gênero</div>
                             <div class="info-value">
                                 <i class="fas fa-venus-mars"></i>
-                                {{$usuario->genero}}
+                                
                             </div>
                         </div>
                         
@@ -945,42 +933,98 @@
 
 
 
-    <script>
-    $(document).ready(function(){
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
-    alert("TO FUNFANDOOOOOO");
+<script>
+$(document).ready(function(){
     
-        var token = $.cookie('token');
-
-    $(document).ready(function(){
-
+    var token = $.cookie('token');
+    
+    if(token) {
+        console.log("Token encontrado:", token);
+        
         $.ajax({
-            url: "../api/busca_usuario" ,
+            url: "/api/busca_usuario",
             method: "GET",
-            data: { 
-                token: token
-
-              //back pega token e devolve inf usuario
-             },
-
-            success: function (res) {
-
-               
-                 
-
-                alert("salvado cria")
+            data: { token: token },
+            success: function(res) {
+                console.log("Resposta:", res);
+                
+                if(res.erro == 'n') {
+                    // ✅ CORRETO - Cada campo no seu devido lugar
+                    
+                    // Header do perfil
+                    $('.profile-name').text(res.usuario.nome);  // Nome grande no topo
+                    $('.profile-email').html('<i class="fas fa-envelope"></i> ' + res.usuario.email);
+                    
+                    // Badge de "Desde"
+                    $('.badge:contains("Desde")').html(`
+                        <i class="fas fa-calendar"></i> 
+                        Desde ${new Date(res.usuario.created_at).toLocaleDateString('pt-BR')}
+                    `);
+                    
+                    // Informações Pessoais
+                    $('.info-value:contains("Nome Completo")').next().find('span').text(res.usuario.nome);
+                    
+                    // Ou melhor, vamos selecionar cada campo especificamente:
+                    const infoItems = $('.info-item');
+                    
+                    // Nome (primeiro campo)
+                    infoItems.eq(0).find('.info-value').html(`
+                        <i class="fas fa-user"></i> ${res.usuario.nome}
+                    `);
+                    
+                    // Email (segundo campo)
+                    infoItems.eq(1).find('.info-value').html(`
+                        <i class="fas fa-envelope"></i> ${res.usuario.email}
+                    `);
+                    
+                    // Telefone (terceiro campo)
+                    infoItems.eq(2).find('.info-value').html(`
+                        <i class="fas fa-phone"></i> ${res.usuario.telefone || 'Não informado'}
+                    `);
+                    
+                    // Data Nascimento (quarto campo)
+                    infoItems.eq(3).find('.info-value').html(`
+                        <i class="fas fa-calendar"></i> ${new Date(res.usuario.nascimento).toLocaleDateString('pt-BR')}
+                    `);
+                    
+                    // Gênero (quinto campo)
+                    infoItems.eq(4).find('.info-value').html(`
+                        <i class="fas fa-venus-mars"></i> ${res.usuario.genero || 'Não informado'}
+                    `);
+                    
+                    // Tempo Ativo (stat card)
+                    const dataCriacao = new Date(res.usuario.created_at);
+                    const agora = new Date();
+                    const diffMs = agora - dataCriacao;
+                    const diffDias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+                    
+                    if(diffDias > 0) {
+                        $('.stat-card:last .stat-value').text(diffDias + ' dias');
+                    } else {
+                        const diffHoras = Math.floor(diffMs / (1000 * 60 * 60));
+                        $('.stat-card:last .stat-value').text(diffHoras + ' horas');
+                    }
+                    
+                    alert("Perfil carregado com sucesso!");
+                } else {
+                    alert("Erro: " + res.msg);
+                }
             },
-
-            
-
+            error: function(xhr, status, error) {
+                console.error("Erro na requisição:", error);
+                alert("Erro ao carregar perfil.");
+            }
         });
-
-    });
-
-
-
+    } else {
+        alert("Você precisa fazer login primeiro!");
+        window.location.href = "/loginn";
+    }
 });
-    </script>
+</script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Atualizar ano no footer
