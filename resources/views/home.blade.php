@@ -46,12 +46,22 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/contato">Contato</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/perfil">perfil</a>
-                    </li>
+              
                     <li class="nav-item ms-2">
                         <a class="btn btn-reserva" href="/reserva">Reserve Agora</a>
                     </li>
+                    <div class="dropdown">
+
+
+  <a class="btn btn-reserva dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="color: black" aria-expanded="false">
+    ==
+  </a>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="perfil">perfil</a></li>
+    <li><a class="dropdown-item" href="loginn">login</a></li>
+    <li><a class="dropdown-item" href="cadastro">cadastro</a></li>
+  </ul>
+</div>
                 </ul>
             </div>
         </div>

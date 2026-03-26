@@ -649,7 +649,7 @@
                 </div>
                 
                 <button class="edit-profile-btn">
-                    <i class="fas fa-edit"></i> Editar Perfil
+                    <i class="fas fa-edit"> <a class="btn btn-reserva" href="/editar ">Editar Perfil</a> </i> 
                 </button>
             </div>
             

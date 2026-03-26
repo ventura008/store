@@ -11,10 +11,12 @@ class UsuarioController extends Controller
 {
     public function perfil()
     {
-       
-
         return view('perfil');
+    }
 
+       public function editar_perfil()
+    {
+        return view('editar');
     }
 
     // Esta função é para a API (retorna JSON)
@@ -86,6 +88,10 @@ class UsuarioController extends Controller
         }
         
     }
+
+
+
+
     public function login(request $request){
         $request->validate([
         'email' => 'required',
@@ -122,8 +128,48 @@ class UsuarioController extends Controller
         }
     }
 
-    public function mostra_perfil($id_usuario){
+    
 
-    }
 
-}
+
+
+
+     public function editar_usuario(Request $request){
+    
+        {$request ->validate ([
+
+        'nome' => 'required',
+        'email' => 'required',
+        'telefone' => 'required',
+        'genero' => 'required',
+        'nascimento' => 'required',
+        
+
+        ]);
+
+        try {
+
+
+
+            $usuario = $request->usuario;
+            $usuario->nome = $request->nome;
+            $usuario->email = $request->email;
+            $usuario->telefone = $request->telefone;
+            $usuario->genero = $request->genero;
+            $usuario->nascimento = $request->nascimento;
+            $usuario->save();
+
+
+            $data = [
+                "erro" => 'n',
+                'carro' => $usuario,
+            ];
+
+            return response()->json($data,200);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        };
+
+    };
+}};

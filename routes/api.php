@@ -18,8 +18,6 @@ Route::get('/soma',[TestController::class,'soma']);
 
 
 
-//tentativa de deixar o perfil sem o id na barra de pesquisa
-
 
 
 //login e cadastro//
@@ -32,11 +30,10 @@ Route::get('/login_novo',[UsuarioController::class,'login']);
 //middle_cliente//
 //reservarcarros//
 //pagamento//
-// routes/api.php
-// routes/api.php
 Route::middleware(auth_api::class)->group(function(){
-   Route::get('/busca_usuario',[UsuarioController::class,'busca_usuario']); // Mudei de POST para GET
+   Route::get('/busca_usuario',[UsuarioController::class,'busca_usuario']); 
    Route::get('/verperfil',[UsuarioController::class,'perfil']);
+   Route::put('/editar_usuario',[UsuarioController::class, 'editar_usuario']);
 });
 
 

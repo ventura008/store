@@ -16,7 +16,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/perfil',[UsuarioController::class,'perfil']);
-
+Route::get('/editar',[UsuarioController::class,'editar_perfil']);
 
 
 // Outras páginas
@@ -52,11 +52,11 @@ Route::get('/reserva', function () {
 
 
 
+Route::get('/formulario',[Testcontroller::class,'abrir_form']);
 Route::get('/deleta_carro/{id_carro}',[TestController::class,'deleta_carro']);
-//Route::get('/alterar_carro/{id_carro}',[Testcontroller::class,'mostra_carro']);//
 Route::get('/alterarformulario/{id_carro}',[TestController::class,'vercarro']);
 Route::get('/frota',[Testcontroller::class,'conta_marca']);
-Route::get('/formulario',[Testcontroller::class,'abrir_form']);
+
 Route::get('/frota',[Testcontroller::class,'conta_marca']);
 
 
@@ -73,6 +73,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

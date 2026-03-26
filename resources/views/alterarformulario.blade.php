@@ -336,7 +336,7 @@
             
             <div class="buttons">
                 <button type="button" class="btn-submit" id="meu">
-                    <i class="fas fa-save btn-icon"></i> Cadastrar Veículo
+                    <i class="fas fa-save btn-icon"></i> alterar Veículo
                 </button>
             </div>
         </div>
