@@ -8,7 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="visual.css"> 
-     <link rel="stylesheet" href="/css/contato.css">
+     @vite('resources/css/contato.css')
+     @vite('resources/css/navbar.css')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -43,6 +44,40 @@
                     </li>
                     <li class="nav-item ms-2">
                         <a class="btn btn-reserva" href="/reserva">Reserve Agora</a>
+                    </li>
+                    <li class="nav-item nav-profile-menu">
+                        <div class="dropdown">
+                            <a class="profile-trigger dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="profile-trigger-avatar">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <span class="profile-trigger-text">
+                                    <small id="profileTriggerLabel">Minha conta</small>
+                                    <strong id="profileTriggerName">Perfil</strong>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end profile-dropdown-menu">
+                                <li class="profile-dropdown-header">
+                                    <span class="profile-dropdown-title">Acesso rápido</span>
+                                    <span class="profile-dropdown-subtitle">Gerencie sua conta</span>
+                                </li>
+                                <li id="profileMenuItem">
+                                    <a class="dropdown-item" href="/perfil">
+                                        <i class="fas fa-user-circle"></i> Perfil
+                                    </a>
+                                </li>
+                                <li id="loginMenuItem">
+                                    <a class="dropdown-item" href="/loginn">
+                                        <i class="fas fa-right-to-bracket"></i> Login
+                                    </a>
+                                </li>
+                                <li id="registerMenuItem">
+                                    <a class="dropdown-item" href="/cadastro">
+                                        <i class="fas fa-user-plus"></i> Cadastro
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -240,12 +275,12 @@
         <div class="container">
             <div class="mapa-box">
                 <h2>Nossa Localização</h2>
-                <p style="text-align: center; color: #aaa; margin-bottom: 30px;">Av. Faria Lima, 1500 - Jardim Paulistano, São Paulo - SP</p>
+                <p class="mapa-endereco">Av. Faria Lima, 1500 - Jardim Paulistano, São Paulo - SP</p>
                 <div class="mapa-container">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.987654321!2d-46.687654!3d-23.576543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDM0JzM1LjYiUyA0NsKwNDEnMTUuNiJX!5e0!3m2!1spt-BR!2sbr!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
                 </div>
-                <div style="text-align: center; margin-top: 30px;">
-                    <p style="color: #ccc;"><i class="fas fa-clock" style="color: #d4af37; margin-right: 10px;"></i> Segunda a Sexta: 8h às 20h | Sábado: 9h às 18h | Domingo: 10h às 16h</p>
+                <div class="mapa-horario-wrapper">
+                    <p class="mapa-horario"><i class="fas fa-clock mapa-horario-icon"></i> Segunda a Sexta: 8h às 20h | Sábado: 9h às 18h | Domingo: 10h às 16h</p>
                 </div>
             </div>
         </div>
@@ -303,41 +338,7 @@
     <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20falar%20com%20a%20WL%20Motors" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Atualizar ano no footer
-            const footerYear = document.querySelector('.footer-bottom p');
-            if(footerYear) {
-                const currentYear = new Date().getFullYear();
-                footerYear.innerHTML = `&copy; ${currentYear} WL Motors. Todos os direitos reservados.`;
-            }
-
-            // Scroll suave para links internos
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        });
-    </script>
+    @vite('resources/js/navbar.js')
+    @vite('resources/js/contato.js')
 </body>
 </html>

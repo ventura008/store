@@ -1,0 +1,215 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, rgba(212, 175, 55, 0.18), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.08), transparent 20%),
+        linear-gradient(135deg, #060606 0%, #0d0d0d 52%, #17130c 100%);
+    color: #f4f1ea;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+}
+
+.splash-shell {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    position: relative;
+}
+
+.splash-backdrop {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.backdrop-orb {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(10px);
+    opacity: 0.7;
+}
+
+.orb-one {
+    width: 340px;
+    height: 340px;
+    top: -80px;
+    left: -60px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.45), rgba(212, 175, 55, 0));
+    animation: driftOne 10s ease-in-out infinite alternate;
+}
+
+.orb-two {
+    width: 380px;
+    height: 380px;
+    right: -80px;
+    bottom: -140px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0));
+    animation: driftTwo 12s ease-in-out infinite alternate;
+}
+
+.backdrop-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7), transparent);
+}
+
+.splash-card {
+    position: relative;
+    width: min(720px, 100%);
+    padding: 56px 48px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 32px;
+    background: linear-gradient(180deg, rgba(20, 20, 20, 0.85), rgba(7, 7, 7, 0.92));
+    backdrop-filter: blur(18px);
+    box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.eyebrow {
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 0.76rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.splash-card h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.2rem, 9vw, 5.6rem);
+    line-height: 0.95;
+    margin-bottom: 18px;
+}
+
+.splash-card h1 span {
+    color: #d4af37;
+}
+
+.lead {
+    max-width: 560px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+    color: rgba(244, 241, 234, 0.82);
+    margin-bottom: 34px;
+}
+
+.splash-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 26px;
+}
+
+.enter-button,
+.secondary-link {
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.enter-button {
+    background: linear-gradient(135deg, #f0c95a, #c99b20);
+    color: #111;
+    font-weight: 800;
+    padding: 15px 26px;
+    border-radius: 999px;
+    box-shadow: 0 16px 30px rgba(201, 155, 32, 0.28);
+}
+
+.enter-button:hover {
+    transform: translateY(-2px);
+}
+
+.secondary-link {
+    color: #f4f1ea;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    padding: 14px 22px;
+    border-radius: 999px;
+}
+
+.secondary-link:hover {
+    border-color: rgba(212, 175, 55, 0.65);
+    color: #d4af37;
+}
+
+.status-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.status-pill,
+.countdown-text {
+    border-radius: 999px;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+}
+
+.status-pill {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(244, 241, 234, 0.84);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.countdown-text {
+    color: rgba(244, 241, 234, 0.75);
+}
+
+.countdown-text strong {
+    color: #d4af37;
+}
+
+@keyframes driftOne {
+    from {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    to {
+        transform: translate3d(50px, 40px, 0) scale(1.08);
+    }
+}
+
+@keyframes driftTwo {
+    from {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    to {
+        transform: translate3d(-50px, -40px, 0) scale(1.12);
+    }
+}
+
+@media (max-width: 768px) {
+    .splash-card {
+        padding: 38px 24px;
+        border-radius: 24px;
+    }
+
+    .lead {
+        font-size: 0.98rem;
+        line-height: 1.7;
+    }
+
+    .status-row {
+        align-items: stretch;
+    }
+
+    .status-pill,
+    .countdown-text,
+    .enter-button,
+    .secondary-link {
+        width: 100%;
+        text-align: center;
+    }
+}

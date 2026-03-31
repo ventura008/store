@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home', function () {
     return view('home');
-});
+})->name('home');
 
 // Página inicial
 Route::get('/', function () {
-    return view('home');
-})->name('home');
+    return view('splash');
+})->name('splash');
 
 Route::get('/perfil',[UsuarioController::class,'perfil']);
 Route::get('/editar',[UsuarioController::class,'editar_perfil']);
@@ -63,14 +63,14 @@ Route::get('/frota',[Testcontroller::class,'conta_marca']);
 
 
 
-
-
-
-
-
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard');
+
+
+//Route::get('/dashboard', function () {
+  //  return view('dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     

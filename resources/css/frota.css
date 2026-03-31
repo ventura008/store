@@ -1,0 +1,866 @@
+  /* ===== PÁGINA DE FROTA ===== */
+        
+        /* Navbar */
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.95);
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            z-index: 1030;
+        }
+
+        .navbar.scrolled {
+            padding: 15px 0;
+            background-color: rgba(10, 10, 10, 0.98);
+        }
+
+        .navbar-brand .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .navbar-brand .logo-highlight {
+            color: #d4af37;
+        }
+
+        .nav-link {
+            color: #f0f0f0 !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #d4af37 !important;
+        }
+
+        .nav-link.active {
+            color: #d4af37 !important;
+            font-weight: 600;
+        }
+
+        .btn-reserva {
+            background: linear-gradient(to right, #d4af37, #b8941f);
+            color: #0a0a0a;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-reserva:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            color: #0a0a0a;
+        }
+
+        /* Hero Banner da Frota */
+        .frota-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1485291571150-772bcfc10da5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .frota-hero-content h1 {
+            font-size: 4rem;
+            color: #d4af37;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .frota-hero-content p {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        /* ===== SEÇÃO DE MARCAS EM CARROSSEL ===== */
+        .marcas-section {
+            padding: 80px 0;
+            background: #0a0a0a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .section-title p {
+            color: #aaa;
+            font-size: 1.1rem;
+        }
+
+        /* Carrossel de Marcas */
+        .marcas-carousel {
+            padding: 20px 0 40px;
+            position: relative;
+        }
+
+        .marca-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* ===== ESTILO DOS AVATARES COM LOGOS - CÍRCULO PERFEITO ===== */
+        .marca-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: #fff;
+            border: 3px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marca-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: all 0.4s ease;
+        }
+
+        .marca-card:hover .marca-avatar {
+            border-color: #d4af37;
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .marca-card:hover .marca-avatar img {
+            transform: scale(1.1);
+        }
+
+        .marca-card h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            transition: color 0.3s;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .marca-card:hover h3 {
+            color: #d4af37;
+        }
+
+        .marca-card span {
+            color: #aaa;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .marca-card:hover span {
+            color: #d4af37;
+        }
+
+        /* Setas do Carrossel */
+        .carrossel-container {
+            position: relative;
+            padding: 0 50px;
+        }
+
+        .carrossel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: #151515;
+            border: 2px solid #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .carrossel-control:hover {
+            background: #d4af37;
+            border-color: #d4af37;
+            color: #0a0a0a;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carrossel-control.prev {
+            left: 0;
+        }
+
+        .carrossel-control.next {
+            right: 0;
+        }
+
+        .carrossel-wrapper {
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .carrossel-slides {
+            display: flex;
+            transition: transform 0.8s ease;
+        }
+
+        .carrossel-slide {
+            flex: 0 0 calc(100% / 6);
+            padding: 15px;
+        }
+
+        /* Indicadores */
+        .carrossel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #333;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .indicator.active {
+            background: #d4af37;
+            transform: scale(1.2);
+        }
+
+        .indicator:hover {
+            background: #d4af37;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0a0a;
+            padding: 80px 0 30px;
+            border-top: 1px solid #222;
+            width: 100%;
+            clear: both;
+        }
+
+        .footer-col h4, .footer-col h5 {
+            color: #fff;
+            margin-bottom: 25px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-col h4 {
+            font-size: 1.8rem;
+        }
+
+        .footer-col h5 {
+            font-size: 1.2rem;
+        }
+
+        .footer-col p {
+            color: #aaa;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col ul li {
+            color: #aaa;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-col ul li i {
+            color: #d4af37;
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-col a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: #d4af37;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #222;
+            border-radius: 50%;
+            color: #d4af37;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background-color: #d4af37;
+            color: #0a0a0a;
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom hr {
+            border-color: #333;
+            margin-bottom: 30px;
+            opacity: 0.5;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            transform: scale(1.1);
+            color: #fff;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 1200px) {
+            .carrossel-slide {
+                flex: 0 0 calc(100% / 5);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .frota-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .carrossel-slide {
+                flex: 0 0 calc(100% / 4);
+            }
+            
+            .marca-avatar {
+                width: 160px;
+                height: 160px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .frota-hero {
+                height: 40vh;
+                margin-top: 70px;
+            }
+            
+            .frota-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .carrossel-slide {
+                flex: 0 0 calc(100% / 3);
+            }
+            
+            .marca-avatar {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .marca-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            .carrossel-container {
+                padding: 0 30px;
+            }
+            
+            .footer-col {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+            
+            .footer-col ul li {
+                justify-content: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .frota-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .carrossel-slide {
+                flex: 0 0 calc(100% / 2);
+            }
+            
+            .marca-avatar {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .carrossel-control {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.8rem;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            footer {
+                padding: 40px 0 20px;
+            }
+            
+            .footer-col h4 {
+                font-size: 1.5rem;
+            }
+        }
+
+/* Estilos para a modal */
+/* Estilos para a modal - Amarelo e Preto */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    animation: fadeIn 0.3s ease;
+    overflow-y: auto;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: #1a1a1a;
+    margin: 3% auto;
+    padding: 0;
+    border-radius: 20px;
+    width: 95%;
+    max-width: 1200px;
+    box-shadow: 0 25px 50px rgba(255, 215, 0, 0.15);
+    animation: slideIn 0.4s ease;
+    border: 2px solid #eacc24;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    padding: 20px 30px;
+    background: #000000;
+    color: #ffd700;
+    border-radius: 18px 18px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ffd700;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+    color: #ffd700;
+}
+
+.modal-header h2 i {
+    margin-right: 10px;
+    color: #ffd700;
+}
+
+.close {
+    color: #ffd700;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #333;
+}
+
+.close:hover {
+    color: #000000;
+    background: #ffd700;
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 30px;
+    max-height: 70vh;
+    overflow-y: auto;
+    background: #1a1a1a;
+}
+
+/* Container dos Cards */
+.carros-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 10px;
+}
+
+/* Card do Carro - Cinza Escuro */
+.carro-card {
+    background: #2d2d2d;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    position: relative;
+    border: 1px solid #404040;
+}
+
+.carro-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
+    border-color: #ffd700;
+}
+
+.carro-imagem {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.carro-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.carro-card:hover .carro-imagem img {
+    transform: scale(1.1);
+}
+
+.carro-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #ffd700;
+    color: #000000;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    z-index: 2;
+}
+
+.carro-info {
+    padding: 20px;
+}
+
+.carro-nome {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #ffd700;
+    font-family: 'Playfair Display', serif;
+}
+
+.carro-detalhes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.detalhe-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #cccccc;
+}
+
+.detalhe-item i {
+    width: 20px;
+    color: #ffd700;
+    font-size: 1rem;
+}
+
+.carro-preco {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffd700;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.carro-preco small {
+    font-size: 0.8rem;
+    color: #999999;
+    font-weight: normal;
+}
+
+.carro-descricao {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #404040;
+}
+
+.carro-acoes {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-reservar {
+    flex: 1;
+    background: #ffd700;
+    color: #000000;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-reservar:hover {
+    background: #ffed4a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+
+.btn-detalhes {
+    flex: 1;
+    background: #404040;
+    color: #ffd700;
+    border: 2px solid #ffd700;
+    padding: 8px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-detalhes:hover {
+    background: #ffd700;
+    color: #000000;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    text-align: center;
+    padding: 50px;
+    color: #ffd700;
+}
+
+.spinner {
+    border: 4px solid #333;
+    border-radius: 50%;
+    border-top: 4px solid #ffd700;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Mensagem quando não há carros */
+.sem-carros {
+    text-align: center;
+    padding: 60px 20px;
+    color: #ffd700;
+    background: #2d2d2d;
+    border-radius: 15px;
+    border: 1px solid #404040;
+}
+
+.sem-carros i {
+    font-size: 5rem;
+    color: #ffd700;
+    margin-bottom: 20px;
+}
+
+.sem-carros h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #ffd700;
+}
+
+.sem-carros p {
+    font-size: 1.1rem;
+    color: #cccccc;
+}
+
+/* Scrollbar personalizada */
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: #ffd700;
+    border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: #ffed4a;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .modal-content {
+        width: 98%;
+        margin: 2% auto;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .modal-body {
+        padding: 15px;
+    }
+    
+    .carros-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .carro-imagem {
+        height: 180px;
+    }
+}
+
+
+.carros-container-hidden {
+    display: none;
+}
+
+.retry-button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #ffd700;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -13,7 +13,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <link rel="stylesheet" href="/css/home.css">
+    @vite('resources/css/home.css')
+    @vite('resources/css/navbar.css')
     
     
 
@@ -50,18 +51,40 @@
                     <li class="nav-item ms-2">
                         <a class="btn btn-reserva" href="/reserva">Reserve Agora</a>
                     </li>
-                    <div class="dropdown">
-
-
-  <a class="btn btn-reserva dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="color: black" aria-expanded="false">
-    ==
-  </a>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="perfil">perfil</a></li>
-    <li><a class="dropdown-item" href="loginn">login</a></li>
-    <li><a class="dropdown-item" href="cadastro">cadastro</a></li>
-  </ul>
-</div>
+                    <li class="nav-item nav-profile-menu">
+                        <div class="dropdown">
+                            <a class="profile-trigger dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="profile-trigger-avatar">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <span class="profile-trigger-text">
+                                    <small id="profileTriggerLabel">Minha conta</small>
+                                    <strong id="profileTriggerName">Perfil</strong>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end profile-dropdown-menu">
+                                <li class="profile-dropdown-header">
+                                    <span class="profile-dropdown-title">Acesso rápido</span>
+                                    <span class="profile-dropdown-subtitle">Gerencie sua conta</span>
+                                </li>
+                                <li id="profileMenuItem">
+                                    <a class="dropdown-item" href="/perfil">
+                                        <i class="fas fa-user-circle"></i> Perfil
+                                    </a>
+                                </li>
+                                <li id="loginMenuItem">
+                                    <a class="dropdown-item" href="/loginn">
+                                        <i class="fas fa-right-to-bracket"></i> Login
+                                    </a>
+                                </li>
+                                <li id="registerMenuItem">
+                                    <a class="dropdown-item" href="/cadastro">
+                                        <i class="fas fa-user-plus"></i> Cadastro
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -323,63 +346,7 @@
     <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20aluguel%20de%20carros%20de%20luxo" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
-
-
-
-
-
-
-
-
-    
-    <script>
-        $(document).ready(function(){
-
-
-        let token = $.cookie('token');
-        alert(token);
-
-});
-        
-        // Script para atualizar o ano no footer
-        document.addEventListener('DOMContentLoaded', function() {
-            // Atualizar ano no footer
-            const footerYear = document.querySelector('.footer-bottom p');
-            if(footerYear) {
-                const currentYear = new Date().getFullYear();
-                footerYear.innerHTML = `&copy; ${currentYear} XL Motors. Todos os direitos reservados.`;
-            }
-            
-            // Atualizar a data mínima nos campos de data
-            const today = new Date().toISOString().split('T')[0];
-            const retiradaInput = document.getElementById('data-retirada');
-            const devolucaoInput = document.getElementById('data-devolucao');
-            
-            if(retiradaInput) {
-                retiradaInput.min = today;
-                retiradaInput.value = today;
-            }
-            if(devolucaoInput) {
-                const tomorrow = new Date();
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                devolucaoInput.min = tomorrow.toISOString().split('T')[0];
-            }
-            
-            // Quando a data de retirada muda, atualiza a data mínima da devolução
-            if(retiradaInput && devolucaoInput) {
-                retiradaInput.addEventListener('change', function() {
-                    const nextDay = new Date(this.value);
-                    nextDay.setDate(nextDay.getDate() + 1);
-                    devolucaoInput.min = nextDay.toISOString().split('T')[0];
-                    
-                    if(devolucaoInput.value && devolucaoInput.value < this.value) {
-                        devolucaoInput.value = devolucaoInput.min;
-                    }
-                });
-            }
-        });
-
-    
-    </script>
+    @vite('resources/js/navbar.js')
+    @vite('resources/js/home.js')
 </body>
 </html>

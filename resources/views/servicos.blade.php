@@ -8,7 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="visual.css"> 
-       <link rel="stylesheet" href="/css/servicos.css">
+       @vite('resources/css/servicos.css')
+       @vite('resources/css/navbar.css')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -44,6 +45,40 @@
                     </li>
                     <li class="nav-item ms-2">
                         <a class="btn btn-reserva" href="/reserva">Reserve Agora</a>
+                    </li>
+                    <li class="nav-item nav-profile-menu">
+                        <div class="dropdown">
+                            <a class="profile-trigger dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="profile-trigger-avatar">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <span class="profile-trigger-text">
+                                    <small id="profileTriggerLabel">Minha conta</small>
+                                    <strong id="profileTriggerName">Perfil</strong>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end profile-dropdown-menu">
+                                <li class="profile-dropdown-header">
+                                    <span class="profile-dropdown-title">Acesso rápido</span>
+                                    <span class="profile-dropdown-subtitle">Gerencie sua conta</span>
+                                </li>
+                                <li id="profileMenuItem">
+                                    <a class="dropdown-item" href="/perfil">
+                                        <i class="fas fa-user-circle"></i> Perfil
+                                    </a>
+                                </li>
+                                <li id="loginMenuItem">
+                                    <a class="dropdown-item" href="/loginn">
+                                        <i class="fas fa-right-to-bracket"></i> Login
+                                    </a>
+                                </li>
+                                <li id="registerMenuItem">
+                                    <a class="dropdown-item" href="/cadastro">
+                                        <i class="fas fa-user-plus"></i> Cadastro
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -539,54 +574,11 @@
         </div>
     </footer>
 
-    <!-- Botão do WhatsApp (ÚNICO) -->
+    <!-- Botão do WhatsApp -->
     <a href="https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20WL%20Motors%20e%20XL%20Cars" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
-
-
-
-
-
-    
-    <script>
-        // Script para atualizar o ano no footer
-        document.addEventListener('DOMContentLoaded', function() {
-            // Atualizar ano no footer
-            const footerYear = document.querySelector('.footer-bottom p');
-            if(footerYear) {
-                const currentYear = new Date().getFullYear();
-                footerYear.innerHTML = `&copy; ${currentYear} XL Motors. Todos os direitos reservados.`;
-            }
-            
-            // Atualizar a data mínima nos campos de data
-            const today = new Date().toISOString().split('T')[0];
-            const retiradaInput = document.getElementById('data-retirada');
-            const devolucaoInput = document.getElementById('data-devolucao');
-            
-            if(retiradaInput) {
-                retiradaInput.min = today;
-                retiradaInput.value = today;
-            }
-            if(devolucaoInput) {
-                const tomorrow = new Date();
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                devolucaoInput.min = tomorrow.toISOString().split('T')[0];
-            }
-            
-            // Quando a data de retirada muda, atualiza a data mínima da devolução
-            if(retiradaInput && devolucaoInput) {
-                retiradaInput.addEventListener('change', function() {
-                    const nextDay = new Date(this.value);
-                    nextDay.setDate(nextDay.getDate() + 1);
-                    devolucaoInput.min = nextDay.toISOString().split('T')[0];
-                    
-                    if(devolucaoInput.value && devolucaoInput.value < this.value) {
-                        devolucaoInput.value = devolucaoInput.min;
-                    }
-                });
-            }
-        });
-    </script>
+    @vite('resources/js/navbar.js')
+    @vite('resources/js/servicos.js')
 </body>
 </html>
