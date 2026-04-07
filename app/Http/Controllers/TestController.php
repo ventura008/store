@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CarroModel;
+use App\Models\LutaModel;
 
 class testController extends Controller
 {   
@@ -43,7 +44,7 @@ class testController extends Controller
             'fabricante' => 'required',
             'tipo_gasolina' => 'required' ,
             'sobre' => 'required',
-            'img' => 'required' ,
+            'img' => 'nullable' ,
         ]);
 
         try {
@@ -74,6 +75,65 @@ class testController extends Controller
         }
 
         
+    }
+
+    public function salva_luta(Request $request)
+    {
+        $request->validate([
+            'nome_lutador' => 'required',
+            'nome_oponente' => 'required',
+            'modalidade' => 'required',
+            'categoria' => 'required',
+            'rounds' => 'required|integer|min:1',
+            'bolsa' => 'required|numeric|min:0',
+            'data_luta' => 'required|date',
+            'local_evento' => 'required',
+            'resultado_previsto' => 'required',
+            'sobre_luta' => 'required',
+            'img' => 'nullable'
+        ]);
+
+        try {
+            $luta = new LutaModel();
+            $luta->nome_lutador = $request->nome_lutador;
+            $luta->nome_oponente = $request->nome_oponente;
+            $luta->modalidade = $request->modalidade;
+            $luta->categoria = $request->categoria;
+            $luta->rounds = $request->rounds;
+            $luta->bolsa = $request->bolsa;
+            $luta->data_luta = $request->data_luta;
+            $luta->local_evento = $request->local_evento;
+            $luta->resultado_previsto = $request->resultado_previsto;
+            $luta->sobre_luta = $request->sobre_luta;
+            $luta->img = $request->img;
+            $luta->save();
+
+            $data = [
+                'erro' => 'n',
+                'msg' => 'luta salva',
+                'luta' => $luta,
+            ];
+
+            return response()->json($data, 200);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function todas_lutas(Request $request)
+    {
+        try {
+            $lutas = LutaModel::orderBy('id', 'desc')->get()->all();
+
+            $data = [
+                'erro' => 'n',
+                'lutas' => $lutas,
+            ];
+
+            return response()->json($data, 200);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     public function exibe_carro($id){
@@ -108,6 +168,28 @@ class testController extends Controller
 
         return view('alterarformulario')->with('carro', $carro);
 
+    }
+
+    public function ver_luta($id)
+    {
+        $luta = LutaModel::find($id);
+
+        if (!$luta) {
+            abort(404, 'Luta nao encontrada');
+        }
+
+        return view('alterarformulario')->with('luta', $luta);
+    }
+
+    public function ver_deleta_luta($id)
+    {
+        $luta = LutaModel::find($id);
+
+        if (!$luta) {
+            abort(404, 'Luta nao encontrada');
+        }
+
+        return view('deleta_carro')->with('luta', $luta);
     }
 
 
@@ -233,6 +315,83 @@ class testController extends Controller
 
     }
 
+    }
+
+    public function alterar_luta(Request $request)
+    {
+        $request->validate([
+            'id_luta' => 'required',
+            'nome_lutador' => 'required',
+            'nome_oponente' => 'required',
+            'modalidade' => 'required',
+            'categoria' => 'required',
+            'rounds' => 'required|integer|min:1',
+            'bolsa' => 'required|numeric|min:0',
+            'data_luta' => 'required|date',
+            'local_evento' => 'required',
+            'resultado_previsto' => 'required',
+            'sobre_luta' => 'required',
+            'img' => 'nullable'
+        ]);
+
+        try {
+            $luta = LutaModel::find($request->id_luta);
+
+            if (!$luta) {
+                return response()->json([
+                    'erro' => 's',
+                    'msg' => 'Luta nao encontrada'
+                ], 404);
+            }
+
+            $luta->nome_lutador = $request->nome_lutador;
+            $luta->nome_oponente = $request->nome_oponente;
+            $luta->modalidade = $request->modalidade;
+            $luta->categoria = $request->categoria;
+            $luta->rounds = $request->rounds;
+            $luta->bolsa = $request->bolsa;
+            $luta->data_luta = $request->data_luta;
+            $luta->local_evento = $request->local_evento;
+            $luta->resultado_previsto = $request->resultado_previsto;
+            $luta->sobre_luta = $request->sobre_luta;
+            $luta->img = $request->img;
+            $luta->save();
+
+            return response()->json([
+                'erro' => 'n',
+                'msg' => 'luta alterada',
+                'luta' => $luta
+            ], 200);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function deletar_luta(Request $request)
+    {
+        $request->validate([
+            'id_luta' => 'required',
+        ]);
+
+        try {
+            $luta = LutaModel::find($request->id_luta);
+
+            if (!$luta) {
+                return response()->json([
+                    'erro' => 's',
+                    'msg' => 'Luta nao encontrada'
+                ], 404);
+            }
+
+            $luta->delete();
+
+            return response()->json([
+                'erro' => 'n',
+                'msg' => 'luta deletada'
+            ], 200);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
     
     

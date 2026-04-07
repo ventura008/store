@@ -53,11 +53,12 @@ Route::get('/reserva', function () {
 
 
 Route::get('/formulario',[Testcontroller::class,'abrir_form']);
-Route::get('/deleta_carro/{id_carro}',[TestController::class,'deleta_carro']);
-Route::get('/alterarformulario/{id_carro}',[TestController::class,'vercarro']);
-Route::get('/frota',[Testcontroller::class,'conta_marca']);
-
-Route::get('/frota',[Testcontroller::class,'conta_marca']);
+Route::get('/deleta_carro/{id_luta}',[TestController::class,'ver_deleta_luta']);
+Route::get('/deletarformulario/{id_luta}',[TestController::class,'ver_deleta_luta']);
+Route::get('/alterarformulario/{id_luta}',[TestController::class,'ver_luta']);
+Route::get('/frota', function () {
+    return view('frota');
+})->name('frota');
 
 
 

@@ -40,10 +40,16 @@ Route::middleware(auth_api::class)->group(function(){
 //middleadm//
 
 Route::post('/salva_carro',[TestController::class,'salva_carro']);
+Route::post('/salva_luta',[TestController::class,'salva_luta']);
+Route::get('/todas_lutas',[TestController::class,'todas_lutas']);
 
 Route::delete('/deletar_carro',[Testcontroller::class,'deletar_carro']); 
 
 Route::put('/alterar_carro',[Testcontroller::class,'alterar_carro']);
+Route::put('/alterar_luta',[TestController::class,'alterar_luta']);
+Route::post('/alterar_luta',[TestController::class,'alterar_luta']);
+Route::delete('/deletar_luta',[TestController::class,'deletar_luta']);
+Route::post('/deletar_luta',[TestController::class,'deletar_luta']);
 
 Route::get('/vem_carros',[TestController::class,'vem_carros']);
 
